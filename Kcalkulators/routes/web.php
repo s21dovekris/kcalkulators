@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\GoogleAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +24,8 @@ Route::get('/dbconn', function () {
 Route::get('produkti', function () {
     return view('produkti');
 });
+Route::get('edieni', function () {
+    return view('edieni');
+});
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
