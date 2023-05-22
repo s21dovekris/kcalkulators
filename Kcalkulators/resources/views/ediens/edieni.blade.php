@@ -17,7 +17,13 @@
                         <div class="search">
                             <input type="search" name="search" id="search" class="form-control" placeholder="Meklēt ēdienu..">
                         </div>
-                </div>
+                
+                        <h1>Receptes</h1>
+
+                        
+                        
+                    </table>
+                      </div>
     </body>
   @stop
 </html>

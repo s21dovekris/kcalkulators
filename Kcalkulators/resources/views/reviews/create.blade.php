@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>    
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>  
-  </head>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</head>
 @extends('layout')
 
 @section('content')
     <div class="container-sm text-left">
-        <h4 class="m-2">Nosūti man ziņu!</h4>
+        <h4 class="m-2">Atstāj atsauksmi vai ieteikumu!</h4>
 
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <form method="POST" action="{{ route('contact.store') }}">
+        <form method="POST" action="{{ route('reviews.store') }}">
             @csrf
 
             <div class="form-group">
@@ -36,5 +36,4 @@
         </form>
     </div>
 @endsection
-
 </html>

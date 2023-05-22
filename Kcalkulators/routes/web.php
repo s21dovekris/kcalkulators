@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\ProduktController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\RecepteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,14 +25,6 @@ Route::get('dbconn', function () {
     return view('dbconn');
 });
 
-Route::get('atsauksmes', function () {
-    return view('atsauksmes');
-});
-
-Route::get('ediens/edieni', function () {
-    return view('ediens/edieni');
-});
-
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
 
@@ -48,3 +42,9 @@ Route::get('/search', [ProduktController::class, 'search']);
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
+Route::get('/reviews', [ReviewController::class, 'create'])->name('reviews.create');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
+Route::get('/receptes', [RecepteController::class, 'index'])->name('receptes.index');
+Route::get('/receptes/create', [RecepteController::class, 'create'])->name('receptes.create');
+Route::post('/receptes', [RecepteController::class, 'store'])->name('receptes.store');

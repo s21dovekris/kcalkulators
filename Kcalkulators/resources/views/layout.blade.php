@@ -22,13 +22,13 @@
         <a class="nav-link" href="/produkts">Produkti</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/ediens/edieni">Ēdieni</a>
+        <a class="nav-link" href="/receptes">Ēdieni</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/contact">Sazinies ar mani!</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/atsauksmes">Atsauksmes un ieteikumi</a>
+        <a class="nav-link" href="/reviews">Atsauksmes un ieteikumi</a>
       </li>
       </ul>
       

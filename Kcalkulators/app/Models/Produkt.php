@@ -14,6 +14,14 @@ class Produkt extends Model
 {
     use HasFactory;
 
+    protected $table = 'produkts';
+
+    public function receptes()
+    {
+        return $this->belongsToMany(Recepte::class, 'recepte_produkts', 'produkt_id', 'recepte_id')
+            ->withPivot('svars');
+    }
+
     protected $fillable = [
         'nosaukums', 'mervieniba', 'kaloritate', 'kategorija', 'vegan', 'alergija'
     ];
