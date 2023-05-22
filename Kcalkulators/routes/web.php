@@ -22,19 +22,26 @@ Route::get('/', function () {
 Route::get('dbconn', function () {
     return view('dbconn');
 });
-Route::get('sazinies', function () {
-    return view('sazinies');
-});
+
 Route::get('atsauksmes', function () {
     return view('atsauksmes');
 });
-Route::get('edieni', function () {
-    return view('edieni');
+
+Route::get('ediens/edieni', function () {
+    return view('ediens/edieni');
 });
+
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
-Route::get('/index', [ProduktController::class, 'index']);
-Route::get('/index/{id}', 'ProduktController@show')->name('produkts.show');
+
+Route::get('/produkts', [ProduktController::class, 'index'])->name('produkts.index');
+Route::get('/produkts/{id}', [ProduktController::class, 'showInfo'])->name('produkts.info');
+
+Route::get('/produkts/{id}/edit', [ProduktController::class, 'edit'])->name('produkts.edit');
+Route::put('/produkts/{id}', [ProduktController::class, 'update'])->name('produkts.update');
+
+Route::get('/produkts/jaunsprodukts', [ProduktController::class, 'jaunsprodukts'])->name('produkts.jaunsprodukts');
+Route::post('/produkts', [ProduktController::class, 'store'])->name('produkts.store');
 
 Route::get('/search', [ProduktController::class, 'search']);
 

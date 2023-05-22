@@ -2,7 +2,7 @@
   
 namespace App\Enums;
  
-enum ProduktKategorijaEnum:string {
+enum ProduktAlergijaEnum:string {
     case Nav = 'Nav';
     case Glutēns = 'Glutēns';
     case Rieksti = 'Rieksti';

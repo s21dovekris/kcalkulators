@@ -2,7 +2,9 @@
 <html lang="en">
 
   <head>
-    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>  
   </head>
 @extends('layout')
 
@@ -19,8 +21,8 @@
                 
                 <div class="d-grid gap-2 col-4 mx-auto">
 
-                    <button class="btn btn-secondary" type="submit" onclick="location.href='/index';">Produktu saraksts</button>
-                    <button class="btn btn-secondary" type="submit" onclick="location.href='/edieni';">Ēdieni</button>
+                    <button class="btn btn-secondary" type="submit" onclick="location.href='/produkts/';">Produktu saraksts</button>
+                    <button class="btn btn-secondary" type="submit" onclick="location.href='/ediens/edieni';">Ēdieni</button>
 
                 </div>
                 <div class="google-btn">

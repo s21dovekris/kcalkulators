@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kcalkulators</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
   </head>
         
             
@@ -19,10 +19,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/index">Produkti</a>
+        <a class="nav-link" href="/produkts">Produkti</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/edieni">Ēdieni</a>
+        <a class="nav-link" href="/ediens/edieni">Ēdieni</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/contact">Sazinies ar mani!</a>
@@ -44,11 +44,11 @@
 
 
         <footer class="bg-light text-center text-lg-start">
-  <!-- Copyright -->
+
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2023 Copyright Kristaps Doveiks
   </div>
-  <!-- Copyright -->
+
 </footer>
 
 </html>

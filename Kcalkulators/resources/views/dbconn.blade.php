@@ -9,7 +9,7 @@
     <div>
         <?php
             if(DB::connection()->getPdo()){
-                echo "Successfully Connected to DB, DB name is ".DB::connection()->getDatabaseName();
+                echo "Savienots ar datu bāzi - ".DB::connection()->getDatabaseName(); 
             }
         ?>
     </div>

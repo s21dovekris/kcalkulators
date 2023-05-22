@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>      
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
   </head>
   @extends('layout')
 
   @section('content')
     <body>
+
         <div class="container-sm text-left">
         
                 <h4 class="m-2">Produktu saraksts</h4>
@@ -25,48 +27,53 @@
                         <th scope="col">Nosaukums</th>
                         <th scope="col">Kategorija</th>
                         <th scope="col">Kaloritāte</th>
+                        <th scope="col">Papildu</th>
                     </tr>
                 </thead>
-                    <tbody>
-                        @foreach($produkts as $produkts)
+                <tbody id="Content">
+                        @foreach($produkts as $produkt)
                         <tr >
-                            <td>{{$produkts->nosaukums}}</td>
-                            <td>{{$produkts->kategorija}}</td>
-                            <td>{{$produkts->kaloritate}}</td>
-                            <td><a href="{{ route('produkts.show', $produkts->id) }}">View Details</a></td>
+                            <td>{{$produkt->nosaukums}}</td>
+                            <td>{{$produkt->kategorija}}</td>
+                            <td>{{$produkt->kaloritate}}</td>
+                            <td><a href="{{ route('produkts.info', $produkt->id) }}">Atvērt</a></td>
                         </tr>
 
                         @endforeach
-                        <tbody id="Content"></tbody>
-                    </tbody>
+                        </tbody>
+                    
                 </table>
         
-        
 
-         
+         <a href="{{ route('produkts.jaunsprodukts') }}" class="btn btn-success active mb-2">Pievienot produktu</a>  
          </div>
 
-         <div class="container-sm text-center">
-         <a href="#" class="btn btn-success active mb-2" role="button" aria-pressed="true">Pievienot produktu</a>  
-        </div>
+       
+        
 
         <script type="text/javascript">
-            $('search').on('keyup', function() {
+            $('#search').on('keyup', function() {
     
             $value=$(this).val();
-                alert(search);
+
             $.ajax({
                 type:'get',
                 url:'{{URL::to('search')}}',
-                data:{'search':$value},
+                data:{search:$value},
 
                 success:function(data) {
                     console.log(data);
                     $('#Content').html(data);
+                
+                },
+                error: function(xhr) {
+                console.log(xhr.responseText);
                 }
             });
             })
         </script>
+
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
         <script>
             function openProdukt(produktId) {
