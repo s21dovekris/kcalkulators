@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('list_items', function (Blueprint $table) {
-            $table->id();
-            $table->string('nosaukums');
-            $table->string('kaloritāte');
+        Schema::create('produkts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nosaukums', 45);
+            $table->string('mervieniba');
+            $table->smallInteger('kaloritate');
+            $table->string('kategorija');
+            $table->boolean('vegan');
+            $table->string('alergija');
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('list_items');
+        Schema::dropIfExists('produkts');
     }
 };
