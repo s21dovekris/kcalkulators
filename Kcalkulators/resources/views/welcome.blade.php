@@ -2,9 +2,10 @@
 <html lang="en">
 
   <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>    
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+  
+  
   </head>
 @extends('layout')
 
@@ -22,9 +23,10 @@
                 <div class="d-grid gap-2 col-4 mx-auto">
 
                     <button class="btn btn-secondary" type="submit" onclick="location.href='/produkts/';">Produktu saraksts</button>
-                    <button class="btn btn-secondary" type="submit" onclick="location.href='/ediens/edieni';">Ēdieni</button>
+                    <button class="btn btn-secondary" type="submit" onclick="location.href='/receptes/';">Ēdieni</button>
 
                 </div>
+                <div class="m-2">
                 <div class="google-btn">
                   <div class="google-icon-wrapper">
                     <a href="{{ route('google-auth') }}">
@@ -33,6 +35,7 @@
                   </div>
                 <p class="lead"><b>Pieslēdzies</b></p>
                 </div>
+              </div>
           </div>
         </div>
     </body>

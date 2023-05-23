@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produkt;
+use App\Models\Recepte;
 use App\Enums\ProduktKategorijaEnum;
 
 class ProduktController extends Controller
@@ -11,9 +12,9 @@ class ProduktController extends Controller
     //
     
     public function index() {
-        $produkts = Produkt::latest()->paginate(10);
+        $produkts = Produkt::all();
 
-        return view('produkts.produkts', compact('produkts'))->with(request()->input('page'));
+        return view('produkts.index', compact('produkts'));
     }
 
 
@@ -51,7 +52,7 @@ class ProduktController extends Controller
     }
 
     public function store(Request $request)
-{
+    {
     $validatedData = $request->validate([
         'nosaukums' => 'required',
         // Add validation rules for other attributes
@@ -60,59 +61,28 @@ class ProduktController extends Controller
     $produkts = Produkt::create($validatedData);
 
     return redirect()->route('produkts.info', $produkts->id)->with('success', 'Produkts pievienots veiksmīgi!');
-}
-
-    /*
-
-    public function search(Request $request) {
-        
-        $produkts = Produkt::where('nosaukums', 'LIKE', '%'.$request->search.'%')->get();
-
-        $output = '';
-        
-        foreach($produkts as $produkt) {
-            $output.= 
-            '<tr>
-            
-            <td>
-            '.$produkt->nosaukums.'</td>
-            <td>
-            '.$produkt->kategorija.'</td>
-            <td>
-            '.$produkt->kaloritate.'</td>
-            </tr>';
-        }
-        
-        return response($output);
-
-        
-
-    }*/
-    public function search(Request $request)
-    {
-        $searchTerm = $request->search;
-        $produkts = Produkt::where('nosaukums', 'LIKE', '%'.$searchTerm.'%')->get();
-    
-        $output = '';
-    
-        if ($produkts->count() > 0) {
-            foreach ($produkts as $produkt) {
-                $output .= '<tr>
-                    <td>'.$produkt->nosaukums.'</td>
-                    <td>'.$produkt->kategorija->getValue().'</td> // Use getValue() to retrieve the string value of the ProduktKategorijaEnum
-                    <td>'.$produkt->kaloritate.'</td>
-                </tr>';
-            }
-        } else {
-            $output = '<tr>
-                <td colspan="4" class="text-center">Nav atrasts neviens produkts.</td>
-            </tr>';
-        }
-    
-        return response($output);
     }
 
+    
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+    
+        $produkts = Produkt::where('nosaukums', 'LIKE', '%' . $searchTerm . '%')
+        ->orWhere('kategorija', 'LIKE', '%' . $searchTerm . '%')
+        ->get();
+    
+    return view('produkts.search_results', compact('produkts'));
+    }
 
+    public function searchForProduct(Request $request)
+    {
+        $search = $request->input('search');
+
+        $products = Produkt::where('nosaukums', 'like', '%' . $search . '%')->get();
+
+        return response()->json($products);
+    }
 
 
 

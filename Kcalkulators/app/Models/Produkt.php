@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Enums\ProduktKategorijaEnum;
 use App\Enums\ProduktMervienibaEnum;
 use App\Enums\ProduktAlergijaEnum;
+use App\Models\Recepte;
 
 
 
@@ -18,8 +19,9 @@ class Produkt extends Model
 
     public function receptes()
     {
-        return $this->belongsToMany(Recepte::class, 'recepte_produkts', 'produkt_id', 'recepte_id')
-            ->withPivot('svars');
+        return $this->belongsToMany(Recepte::class)
+                    ->withPivot('svars')
+                    ->withTimestamps();
     }
 
     protected $fillable = [

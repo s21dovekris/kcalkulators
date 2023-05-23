@@ -1,36 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
-</head>
-
 @extends('layout')
 
 @section('content')
     <div class="container">
-        <h4 class="m-2">Pievienot ēdienu</h4>
+        <h4 class="m-2">Labot ēdienu</h4>
 
-        <form id="recipeForm" method="POST" action="{{ route('receptes.store') }}">
+        <form id="recipeForm" method="POST" action="{{ route('receptes.update', $recipe->id) }}">
             @csrf
+            @method('PUT')
 
             <div class="form-group">
                 <label for="name">Ēdiena nosaukums:</label>
-                <input type="text" name="name" class="form-control" required>
+                <input type="text" name="name" class="form-control" value="{{ $recipe->nosaukums }}" required>
             </div>
 
             <div class="form-group">
                 <label for="guide">Ēdiena apraksts:</label>
-                <textarea name="guide" class="form-control" required></textarea>
+                <textarea name="guide" class="form-control" required>{{ $recipe->apraksts }}</textarea>
             </div>
 
-            <div class="form-group">
-                <label for="productSearch">Meklēt produktu:</label>
-                <input type="text" id="productSearch" class="form-control" placeholder="Ievadiet nosaukumu">
-            </div>
 
-            <div id="selectedProducts" class="mb-3"></div>
-        
             <table id="produktsTable" class="table">
                 <thead class="table-light">
                     <tr>
@@ -41,14 +29,25 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>{{ $product->nosaukums }}</td>
+                            <td>
+                                <input type="number" name="produkts[{{ $product->id }}][svars]" class="form-control" min="0" max="10.0" step="0.001" required value="{{ $product->pivot->svars }}">
+                            </td>
+                            <td>{{ $product->kaloritate }}</td>
+                            <td>{{ $product->kaloritate * $product->pivot->svars }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
 
             <div id="errorBox" class="alert alert-danger" style="display: none;"></div>
 
-            <button type="submit" class="btn btn-secondary m-2">Izveidot ēdienu</button>
+            <button type="submit" class="btn btn-secondary m-2">Labot ēdienu</button>
         </form>
     </div>
+
 
     <script>
         // Function to add a selected product to the table
@@ -140,4 +139,3 @@
     </script>
 @endsection
 
-</html>
