@@ -32,7 +32,7 @@
                 <textarea name="message" class="form-control" required></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary m-2">Nosūtīt</button>
+            <button type="submit" class="btn btn-secondary m-2">Nosūtīt</button>
         </form>
     </div>
 @endsection

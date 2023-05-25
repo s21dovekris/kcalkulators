@@ -17,15 +17,30 @@ class ProduktController extends Controller
         return view('produkts.index', compact('produkts'));
     }
 
+    public function create()
+    {
+    return view('produkts.create');
+    }
+
+    public function store(Request $request)
+    {
+    $validatedData = $request->validate([
+        'nosaukums' => 'required',
+        // Add validation rules for other attributes
+    ]);
+
+    $produkts = Produkt::create($validatedData);
+
+    return redirect()->route('produkts.info', $produkts->id)->with('success', 'Produkts pievienots veiksmīgi!');
+    }
 
     public function showInfo($id)
     {
         $produkts = Produkt::find($id);
 
         if (!$produkts) {
-        // Handle case when product is not found
-        // For example, return a 404 page or redirect back
-        return redirect()->back()->with('error', 'Product not found');
+
+        return redirect()->back()->with('error', 'Produkts nav atrasts!');
     }
 
     return view('produkts.info', compact('produkts'));
@@ -46,24 +61,6 @@ class ProduktController extends Controller
     return redirect()->route('produkts.info', $id)->with('success', 'Produkts rediģēts veiksmīgi!');
     }
 
-    public function jaunsprodukts()
-    {
-        return view('produkts.jaunsprodukts', compact('produkts'));
-    }
-
-    public function store(Request $request)
-    {
-    $validatedData = $request->validate([
-        'nosaukums' => 'required',
-        // Add validation rules for other attributes
-    ]);
-
-    $produkts = Produkt::create($validatedData);
-
-    return redirect()->route('produkts.info', $produkts->id)->with('success', 'Produkts pievienots veiksmīgi!');
-    }
-
-    
     public function search(Request $request)
     {
         $searchTerm = $request->input('search');

@@ -29,23 +29,18 @@ Route::get('dbconn', function () {
 
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
-
-Route::get('/produkts', [ProduktController::class, 'index'])->name('produkts.index');
-Route::get('/produkts/search', [ProduktController::class, 'search'])->name('produkts.search');
-Route::get('/produkts/{id}', [ProduktController::class, 'showInfo'])->name('produkts.info');
-
-Route::get('/produkts/{id}/edit', [ProduktController::class, 'edit'])->name('produkts.edit');
-Route::put('/produkts/{id}', [ProduktController::class, 'update'])->name('produkts.update');
-
-Route::get('/produkts/jaunsprodukts', [ProduktController::class, 'jaunsprodukts'])->name('produkts.jaunsprodukts');
-Route::post('/produkts', [ProduktController::class, 'store'])->name('produkts.store');
-
+Route::post('/logout', [GoogleAuthController::class, 'logout'])->name('logout');
 
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
-Route::get('/reviews', [ReviewController::class, 'create'])->name('reviews.create');
-Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::get('/produkts', [ProduktController::class, 'index'])->name('produkts.index');
+Route::get('/produkts/search', [ProduktController::class, 'search'])->name('produkts.search');
+Route::get('/produkts/{id}', [ProduktController::class, 'showInfo'])->name('produkts.info');
+Route::get('/produkts/{id}/edit', [ProduktController::class, 'edit'])->name('produkts.edit');
+Route::put('/produkts/{id}', [ProduktController::class, 'update'])->name('produkts.update');
+Route::get('/produkts/create', [ProduktController::class, 'create'])->name('produkts.create');
+Route::post('/produkts', [ProduktController::class, 'store'])->name('produkts.store');
 
 Route::get('/receptes', [RecepteController::class, 'index'])->name('receptes.index');
 Route::get('/receptes/create', [RecepteController::class, 'create'])->name('receptes.create');
@@ -54,6 +49,4 @@ Route::get('/receptes/search', [RecepteController::class, 'search'])->name('rece
 Route::get('/receptes/{id}', [RecepteController::class,'showInfo'])->name('receptes.show');
 Route::get('/receptes/{id}/edit', [RecepteController::class, 'edit'])->name('receptes.edit');
 Route::put('/receptes/{id}', [RecepteController::class, 'update'])->name('receptes.update');
-
-
 Route::get('/search/product', [ProduktController::class, 'searchForProduct'])->name('product.search');

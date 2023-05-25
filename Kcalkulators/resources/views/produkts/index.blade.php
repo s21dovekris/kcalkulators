@@ -38,7 +38,9 @@
             </tbody>
         </table>
         <div id="searchResults"></div>
-        
+        @auth
+        <a href="{{ route('produkts.create') }}" class="btn btn-success">Pievienot produktu</a>
+        @endauth
     </div>
 
     <script type="text/javascript">

@@ -46,7 +46,8 @@
 
             <div id="errorBox" class="alert alert-danger" style="display: none;"></div>
 
-            <button type="submit" class="btn btn-secondary m-2">Izveidot ēdienu</button>
+            <button type="submit" class="btn btn-success m-2">Izveidot ēdienu</button>
+            <a href="{{ route('receptes.index') }}" class="btn btn-secondary">Atpakaļ</a>
         </form>
     </div>
 

@@ -15,7 +15,7 @@
                     <td>{{ $produkt->nosaukums }}</td>
                     <td>{{ $produkt->kategorija }}</td>
                     <td>{{ $produkt->kaloritate }}</td>
-                    <td><a href="{{ route('produkts.info', $produkt->id) }}">Atvērt</a></td>
+                    <td><a href="{{ route('produkts.info', $produkt->id) }}" class="btn btn-secondary">Atvērt</a></td>
                 </tr>
             @endforeach
         </tbody>

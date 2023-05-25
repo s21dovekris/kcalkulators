@@ -13,6 +13,10 @@
             height: 100%;
         }
 
+        body {
+            background-color: lightgrey;
+        }
+
         .wrapper {
             display: flex;
             flex-direction: column;
@@ -25,43 +29,57 @@
     </style>
 </head>
 
-<body>
-    <div class="wrapper">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body class="bg-light">
+  <div class="wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="/">Kcalkulators</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
           </button>
-        
+
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="/produkts">Produkti</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/receptes">Ēdieni</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/contact">Sazinies ar mani!</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://ottohotel.lv/">OTTO</a>
-              </li>
+              <ul class="navbar-nav ml-auto mr-lg-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="/produkts">Produkti</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/receptes">Ēdieni</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/contact">Sazinies ar mani!</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="https://ottohotel.lv/">OTTO</a>
+                  </li>
               </ul>
-              
+
+              <ul class="navbar-nav ml-auto">
+                  @auth
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                          Izrakstīties
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+                  @endauth
+              </ul>
           </div>
-        </nav>
+      </nav>
 
-        <div class="content">
-            @yield('content')
-        </div>
+      <div class="content">
+          @yield('content')
+      </div>
 
-        <footer class="bg-light text-center text-lg-start">
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                © 2023 Copyright Kristaps Doveiks
-            </div>
-        </footer>
-    </div>
+      <footer class="bg-light text-center text-lg-start">
+          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+              © 2023 Copyright Kristaps Doveiks
+          </div>
+      </footer>
+  </div>
 </body>
 
 </html>

@@ -37,6 +37,9 @@
       </table>
 
         <div id="searchResults"></div>
+        @auth
+        <a href="{{ route('receptes.create') }}" class="btn btn-success">Pievienot ēdienu</a>
+        @endauth
     </div>
 
     <script type="text/javascript">

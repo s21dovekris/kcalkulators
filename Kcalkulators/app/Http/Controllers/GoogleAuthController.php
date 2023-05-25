@@ -13,30 +13,41 @@ class GoogleAuthController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-    public function callbackGoogle(){
-        try {
+    public function callbackGoogle()
+{
+    try {
+        $google_user = Socialite::driver('google')->user();
 
-            $google_user = Socialite::driver('google')->user();
+        $user = User::where('google_id', $google_user->getId())->first();
 
-            $user = User::where('google_id', $google_user->getId())->first();
+        if (!$user) {
+            $user = User::where('email', $google_user->getEmail())->first();
 
-            if(!$user) {
-                $new_user = User::create([
+            if (!$user) {
+                $user = User::create([
                     'name' => $google_user->getName(),
                     'email' => $google_user->getEmail(),
                     'google_id' => $google_user->getId()
                 ]);
-
-                Auth::login($new_user);
-
-                return redirect()->intended('/');
+            } else {
+                $user->google_id = $google_user->getId();
+                $user->save();
             }
-            else {
-                Auth::login($user);
-                return redirect()->intended('/');
-            }
-        } catch (\Throwable $th) {
-            dd('Error signing in.'. $th->getMessage());
         }
+
+        Auth::login($user);
+
+        return redirect()->intended('/');
+    } catch (\Throwable $th) {
+        dd('Error signing in: ' . $th->getMessage());
     }
+}
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
+
+
 }

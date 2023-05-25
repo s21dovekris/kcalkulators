@@ -5,6 +5,7 @@
             <tr>
                 <th>Nosaukums</th>
                 <th>Apraksts</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -12,6 +13,7 @@
                 <tr>
                     <td>{{ $recipe->nosaukums }}</td>
                     <td>{{ $recipe->apraksts }}</td>
+                    <td><a href="{{ route('receptes.show', $recipe->id) }}" class="btn btn-secondary">Atvērt</a></td>
                 </tr>
             @endforeach
         </tbody>

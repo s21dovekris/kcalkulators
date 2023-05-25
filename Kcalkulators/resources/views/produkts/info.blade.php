@@ -29,8 +29,13 @@
                     <span style="color: red">&#10008;</span> <!-- Red cross symbol -->
                 @endif</p>
         </div>
-        <a href="{{ route('produkts.index') }}" class="btn btn-secondary m-2">Atpakaļ uz produktiem</a> 
+       
+        <a href="{{ route('produkts.index') }}" class="btn btn-secondary">Atpakaļ uz produktiem</a> 
+         @auth
         <a href="{{ route('produkts.edit', $produkts->id) }}" class="btn btn-success">Labot</a>
+        <a href="{{ route('produkts.edit', $produkts->id) }}" class="btn btn-danger">Dzēst</a>
+        @endauth
+        
     </div>
    
     
