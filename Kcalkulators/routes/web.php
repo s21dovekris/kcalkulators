@@ -35,11 +35,14 @@ Route::get('/contact', [ContactController::class, 'create'])->name('contact.crea
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/produkts', [ProduktController::class, 'index'])->name('produkts.index');
+Route::get('/produkts/create', [ProduktController::class, 'create'])->name('produkts.create');
 Route::get('/produkts/search', [ProduktController::class, 'search'])->name('produkts.search');
 Route::get('/produkts/{id}', [ProduktController::class, 'showInfo'])->name('produkts.info');
 Route::get('/produkts/{id}/edit', [ProduktController::class, 'edit'])->name('produkts.edit');
 Route::put('/produkts/{id}', [ProduktController::class, 'update'])->name('produkts.update');
-Route::get('/produkts/create', [ProduktController::class, 'create'])->name('produkts.create');
+Route::delete('/produkts/{id}', [ProduktController::class, 'delete'])->name('produkts.delete');
+
+
 Route::post('/produkts', [ProduktController::class, 'store'])->name('produkts.store');
 
 Route::get('/receptes', [RecepteController::class, 'index'])->name('receptes.index');
@@ -50,3 +53,4 @@ Route::get('/receptes/{id}', [RecepteController::class,'showInfo'])->name('recep
 Route::get('/receptes/{id}/edit', [RecepteController::class, 'edit'])->name('receptes.edit');
 Route::put('/receptes/{id}', [RecepteController::class, 'update'])->name('receptes.update');
 Route::get('/search/product', [ProduktController::class, 'searchForProduct'])->name('product.search');
+Route::delete('/receptes/{id}', [RecepteController::class, 'delete'])->name('receptes.delete');

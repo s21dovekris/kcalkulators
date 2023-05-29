@@ -52,7 +52,11 @@
     </div>
 
     <script>
-        // Function to add a selected product to the table
+        /**
+         * 
+         * Funkcija, kas pievieno izvēlēto produktu tabulai apstrādei front-endā.
+         * 
+        */
         function addProductToTable(product) {
             var tbody = $('#produktsTable tbody');
             var row = $('<tr>');
@@ -63,13 +67,21 @@
             tbody.append(row);
         }
 
-        // Event listener for the product search input
+        /**
+         * 
+         * Produktu meklētājs izmantojot meklēšanas joslu.
+         * 
+        */
         $('#productSearch').on('keyup', function () {
             var searchValue = $(this).val();
             searchForProduct(searchValue);
         });
 
-        // Event listener for selecting a product from the search results
+        /**
+         * 
+         * Produkta pievienotājs produktu sarakstam, atiestatot meklēšanu uz tukšu meklētāju.
+         * 
+        */
         $(document).on('click', '.product-item', function () {
             var id = $(this).data('id');
             var name = $(this).data('name');
@@ -80,7 +92,11 @@
             $('#productSearch').val('');
         });
 
-        // Function to display search results for adding products to the recipe
+        /**
+         * 
+         * Produktu uzskaitītājs, pievienojot produktus ēdienam.
+         * 
+        */
         function displayProductSearchResults(results) {
             var selectedProducts = $('#selectedProducts');
             selectedProducts.empty();
@@ -93,8 +109,13 @@
             }
         }
 
+        /**
+         * 
+         * Funkcija produktu meklēšanai izmantojot AJAX vaicājumu, kas meklē produktus pēc ievadītās vērtības meklētājā
+         * 
+        **/
+
         function searchForProduct(searchValue) {
-            // Perform an AJAX request to search for products based on the search value
             $.ajax({
                 type: 'GET',
                 url: '{{ route('product.search') }}',
@@ -108,23 +129,34 @@
             });
         }
 
-        // Event listener for form submission
-        $('#recipeForm').on('submit', function(e) {
-            e.preventDefault(); // Prevent the form from being submitted
+        /**
+         * 
+         * Receptes pievienošanas pārbaude, kas pārbauda, vai vismaz viens produkts ir pievienots ēdienam
+         * 1. Produktu skaitīšana
+         * 2. Ja produkti nav, tad izsauc kļūdu.
+         * 
+        */
 
-            var productCount = $('#produktsTable tbody tr').length; // Get the number of products in the table
+        $('#recipeForm').on('submit', function(e) {
+            e.preventDefault(); 
+
+            var productCount = $('#produktsTable tbody tr').length; 
 
             if (productCount === 0) {
-                // Display an error message
                 $('#errorBox').text('Pievieno vismaz vienu produktu ēdienam.').show();
             } else {
-                // Hide the error message and submit the form
                 $('#errorBox').hide();
                 this.submit();
             }
         });
 
-        // Function to calculate Kalorijas based on Kaloritāte and Svars values
+        /**
+         * 
+         * Funkcija kaloriju skaitīšanai izmantojot norādīto produktu svaru un paņemto produkta kaloritāti
+         * kalorijas = kaloritāte * 10 * svars; //Šādi daudzumi, jo produkta svari norādīti kilogramos un kaloritāte atbilst 100 gramiem.
+         * 
+        **/
+
         function calculateKalorijas(input) {
             var row = input.closest('tr');
             var kaloritāte = parseFloat(row.find('td:nth-child(3)').text());
@@ -134,10 +166,17 @@
             row.find('td:nth-child(4)').text(kalorijas.toFixed(2));
         }
 
-        // Event listener for input changes in the table
+        /**
+         * 
+         * Kaloriju atjaunošana, sniedzot datus par produktu
+         * 
+         * 
+        **/
+
         $(document).on('input', '#produktsTable input', function() {
             calculateKalorijas($(this));
         });
+        
     </script>
 @endsection
 

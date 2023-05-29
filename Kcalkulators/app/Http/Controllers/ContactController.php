@@ -7,11 +7,18 @@ use App\Models\Message; // Import the Message model
 
 class ContactController extends Controller
 {
+    // Pāradresācija uz skatu, kas atbild par ziņas izveidi autoram.
+
     public function create()
     {
         return view('contact.create');
     }
 
+    /**
+     * Funkcija, kas uzglabā ziņu, kas paredzēta autoram 
+     * Nepieciešamie dati ar validāciju - vārds, epasts, ziņa
+     * 
+     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -20,7 +27,6 @@ class ContactController extends Controller
             'message' => 'required',
         ]);
 
-        // Create a new Message instance and fill it with the validated data
         $message = new Message();
         $message->name = $validatedData['name'];
         $message->email = $validatedData['email'];

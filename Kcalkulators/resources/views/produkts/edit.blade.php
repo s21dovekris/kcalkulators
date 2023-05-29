@@ -17,7 +17,7 @@
 
             <div class="form-group">
                 <label for="nosaukums">Nosaukums</label>
-                <input type="text" name="nosaukums" id="nosaukums" class="form-control" value="{{ $produkts->nosaukums }}">
+                <input type="text" name="nosaukums" id="nosaukums" class="form-control" value="{{ $produkts->nosaukums }}" required>
                 @error('nosaukums')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -49,7 +49,7 @@
 
             <div class="form-group">
                 <label for="kaloritate">Kaloritāte</label>
-                <input type="text" name="kaloritate" id="kaloritate" class="form-control" value="{{ $produkts->kaloritate }}">
+                <input type="text" name="kaloritate" id="kaloritate" class="form-control" value="{{ $produkts->kaloritate }}" required>
                 @error('kaloritate')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror

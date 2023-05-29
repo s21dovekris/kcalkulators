@@ -42,7 +42,16 @@
         @endauth
     </div>
 
+
+
     <script type="text/javascript">
+
+        /**
+         * 
+         * Ēdienu meklētājs izmantojot AJAX piesaisti. Dzīvā meklēšana, kur ēdienu saraksts mainās atkarībā no meklētāja ieraksta ar piesaistītu skatu - receptes/search_results.blade.php
+         * 
+        **/
+
       $('#search').on('keyup', function() {
           var $value = $(this).val();
   
@@ -52,10 +61,8 @@
               data: { search: $value },
               success: function(data) {
                   if (data.trim().length > 0) {
-                      // Hide existing recipe table if search results found
                       $('#existingRecipesTable').hide();
                   } else {
-                      // Show existing recipe table if no search results found
                       $('#existingRecipesTable').show();
                   }
                   $('#searchResults').html(data);

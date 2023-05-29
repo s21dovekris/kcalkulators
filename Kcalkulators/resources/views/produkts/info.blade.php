@@ -24,16 +24,27 @@
             <p>Kaloritāte: {{ $produkts->kaloritate }}</p>
             <p>Alergēns: {{ $produkts->alergija }}</p>
             <p>Vai vegāns? @if ($produkts->vegan)
-                    <span style="color: green">&#10004;</span> <!-- Green tick symbol -->
+                    <span style="color: green">&#10004;</span>
                 @else
-                    <span style="color: red">&#10008;</span> <!-- Red cross symbol -->
+                    <span style="color: red">&#10008;</span>
                 @endif</p>
         </div>
        
         <a href="{{ route('produkts.index') }}" class="btn btn-secondary">Atpakaļ uz produktiem</a> 
          @auth
         <a href="{{ route('produkts.edit', $produkts->id) }}" class="btn btn-success">Labot</a>
-        <a href="{{ route('produkts.edit', $produkts->id) }}" class="btn btn-danger">Dzēst</a>
+        <a href="{{ route('produkts.delete', $produkts->id) }}"
+            class="btn btn-danger"
+            onclick="event.preventDefault();
+                     if (confirm('Vai tiešām vēlaties dzēst šo produktu?')) {
+                         document.getElementById('delete-form').submit();
+                     }">
+            Dzēst
+         </a>
+         <form id="delete-form" action="{{ route('produkts.delete', $produkts->id) }}" method="POST" style="display: none;">
+             @csrf
+             @method('DELETE')
+         </form>
         @endauth
         
     </div>

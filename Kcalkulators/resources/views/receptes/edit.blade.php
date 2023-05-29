@@ -58,7 +58,12 @@
 
 
     <script>
-        // Function to add a selected product to the table
+
+        /**
+         * 
+         * Uz funkciju aprakstiem atsaukties uz receptes/create.blade.php
+         * 
+        **/
         function addProductToTable(product) {
             var tbody = $('#produktsTable tbody');
             var row = $('<tr>');
@@ -69,13 +74,11 @@
             tbody.append(row);
         }
 
-        // Event listener for the product search input
         $('#productSearch').on('keyup', function () {
             var searchValue = $(this).val();
             searchForProduct(searchValue);
         });
 
-        // Event listener for selecting a product from the search results
         $(document).on('click', '.product-item', function () {
             var id = $(this).data('id');
             var name = $(this).data('name');
@@ -86,7 +89,6 @@
             $('#productSearch').val('');
         });
 
-        // Function to display search results for adding products to the recipe
         function displayProductSearchResults(results) {
             var selectedProducts = $('#selectedProducts');
             selectedProducts.empty();
@@ -100,7 +102,6 @@
         }
 
         function searchForProduct(searchValue) {
-            // Perform an AJAX request to search for products based on the search value
             $.ajax({
                 type: 'GET',
                 url: '{{ route('product.search') }}',
@@ -114,23 +115,20 @@
             });
         }
 
-        // Event listener for form submission
-        $('#recipeForm').on('submit', function(e) {
-            e.preventDefault(); // Prevent the form from being submitted
 
-            var productCount = $('#produktsTable tbody tr').length; // Get the number of products in the table
+        $('#recipeForm').on('submit', function(e) {
+            e.preventDefault(); 
+
+            var productCount = $('#produktsTable tbody tr').length; 
 
             if (productCount === 0) {
-                // Display an error message
                 $('#errorBox').text('Pievieno vismaz vienu produktu ēdienam.').show();
             } else {
-                // Hide the error message and submit the form
                 $('#errorBox').hide();
                 this.submit();
             }
         });
 
-        // Function to calculate Kalorijas based on Kaloritāte and Svars values
         function calculateKalorijas(input) {
             var row = input.closest('tr');
             var kaloritāte = parseFloat(row.find('td:nth-child(3)').text());
@@ -140,10 +138,12 @@
             row.find('td:nth-child(4)').text(kalorijas.toFixed(2));
         }
 
-        // Event listener for input changes in the table
+
         $(document).on('input', '#produktsTable input', function() {
             calculateKalorijas($(this));
         });
+
+
     </script>
 @endsection
 </html>

@@ -46,7 +46,18 @@
         <a href="{{ route('receptes.index', $recipe->id) }}" class="btn btn-secondary">Atpakaļ uz receptēm</a>
         @auth
         <a href="{{ route('receptes.edit', $recipe->id) }}" class="btn btn-success">Labot recepti</a>
-        <a href="{{ route('receptes.edit', $recipe->id) }}" class="btn btn-danger">Dzēst recepti</a>
+        <a href="{{ route('receptes.delete', $recipe->id) }}"
+            class="btn btn-danger"
+            onclick="event.preventDefault();
+                     if (confirm('Vai tiešām vēlaties dzēst šo ēdienu?')) {
+                         document.getElementById('delete-form').submit();
+                     }">
+            Dzēst
+         </a>
+         <form id="delete-form" action="{{ route('receptes.delete', $recipe->id) }}" method="POST" style="display: none;">
+             @csrf
+             @method('DELETE')
+         </form>
         @endauth
     </div>
 @endsection

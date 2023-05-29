@@ -44,6 +44,13 @@
     </div>
 
     <script type="text/javascript">
+
+        /**
+         * 
+         * Produktu meklētājs izmantojot AJAX piesaisti. Dzīvā meklēšana, kur produktu saraksts mainās atkarībā no meklētāja ieraksta ar piesaistītu skatu - receptes/search_results.blade.php
+         * 
+        **/
+       
         $('#search').on('keyup', function() {
             var $value = $(this).val();
     
@@ -53,10 +60,8 @@
                 data: { search: $value },
                 success: function(data) {
                     if (data.trim().length > 0) {
-                        // Hide existing products table if search results found
                         $('#existingProductsTable').hide();
                     } else {
-                        // Show existing products table if no search results found
                         $('#existingProductsTable').show();
                     }
                     $('#searchResults').html(data);
